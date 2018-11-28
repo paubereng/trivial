@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import _ from 'lodash';
 
 class QuestionCard extends Component {
@@ -37,6 +36,7 @@ class QuestionCard extends Component {
   clickAnswer = ev => {
     this.props.nextQuestion(ev,this.props.data);
   }
+
   render() {
 
     return(

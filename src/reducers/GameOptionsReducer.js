@@ -1,5 +1,4 @@
 import axios from 'axios';
-import _ from 'lodash';
 const FETCH_QUESTIONS = 'FETCH_QUESTIONS';
 const POST_GAME_SET = 'POST_GAME_SET';
 const POST_ANSWER = 'POST_ANSWER';
@@ -46,7 +45,7 @@ export function postGameSet(gameSet) {
 export function postAnswer(question, answer) {
   return dispatch =>  {
     let point = 0;
-    if(question.correct_answer == answer){
+    if(question.correct_answer === answer){
       point = 1;
     }
     dispatch({
