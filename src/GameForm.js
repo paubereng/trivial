@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actionsCreators from './reducers/GameOptionsReducer';
+import { Link } from 'react-router-dom';
 
 class GameForm extends Component {
   constructor(props) {
@@ -10,10 +14,6 @@ class GameForm extends Component {
         questions_number: [5,10,15]
       },
       game_set: {
-        // player_names: {
-        //   0: {name: ''}
-        // },
-        // players:1,
         player_name: '',
         level: 'easy',
         questions_number: 5
@@ -87,8 +87,8 @@ class GameForm extends Component {
     });
   }
   clickStartButton = () => {
-    //// TODO: Start game
-    alert('ok');
+    this.props.postGameSet(this.state.game_set);
+    this.props.fetchQuestions();
   }
 
   render() {
@@ -97,14 +97,21 @@ class GameForm extends Component {
         <div className="columns is-mobile">
           <div className="container box">
             <div className="has-text-centered">
-              <h3 class="title is-3">Game options</h3>
-              <p class="subtitle is-6">Fill the form and start the game</p>
+              <h3 className="title is-3">Game options</h3>
+              <p className="subtitle is-6">Fill the form and start the game</p>
             </div>
             {this.renderSelectLevels()}
             {this.renderSelectQuestions()}
             {this.renderInputPlayer()}
 
-            <button className="button is-medium is-fullwidth is-primary" onClick={this.clickStartButton}>Start Game</button>
+            <Link to="/questions">
+              <button
+                className="button is-medium is-fullwidth is-primary"
+                onClick={this.clickStartButton}
+              >
+              Start Game
+              </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -112,4 +119,8 @@ class GameForm extends Component {
   }
 }
 
-export default GameForm;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(actionsCreators, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(GameForm);
