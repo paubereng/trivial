@@ -26,7 +26,6 @@ class GameForm extends Component {
     if(!this.props.categories || !this.props.categories.length > 0) {
       this.getCategories();
     }
-    // this.getCategories();
   }
   getCategories = () => {
     this.props.fetchCategories();
@@ -118,9 +117,12 @@ class GameForm extends Component {
 
   render() {
     return (
-      <div className="column is-three-fifths is-offset-one-fifth">
-        <div className="columns is-mobile">
-          <div className="container box">
+      <section className="section">
+          <div class="container">
+          <div className="has-text-centered">
+            <h1 className="title is-1 has-text-light">TRIVIAL REACT</h1>
+          </div>
+          <div className="container box game-form">
             <div className="has-text-centered">
               <h3 className="title is-3">Game options</h3>
               <p className="subtitle is-6">Fill the form and start the game</p>
@@ -143,7 +145,7 @@ class GameForm extends Component {
             </Link>
           </div>
         </div>
-      </div>
+      </section>
     );
   }
 }

@@ -27,7 +27,7 @@ class QuestionsPage extends Component {
     render() {
       let currentQuestion = this.props.options.question_counter;
       return (
-        <div>
+        <section className="section">
             {this.props.options.questions && this.props.options.questions.length > 0
               ?
               <TransitionGroup className="card-container">
@@ -43,11 +43,11 @@ class QuestionsPage extends Component {
                   </CSSTransition>
                 </TransitionGroup>
               :
-                <div>
-                loading...
+                <div className="has-text-centered">
+                  <div class="lds-ripple"><div></div><div></div></div>
                 </div>
             }
-        </div>
+        </section>
       );
     }
   }
