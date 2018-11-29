@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent  } from 'react';
 import _ from 'lodash';
 
-class QuestionCard extends Component {
+class QuestionCard extends PureComponent  {
   constructor(props) {
     super(props);
   }
@@ -15,7 +15,7 @@ class QuestionCard extends Component {
         <ul>
           {answers.map(answer => {
             return(
-              <li key={answer}><button value={answer} onClick={this.clickAnswer.bind(this)} className="button is-primary">{answer}</button></li>
+              <li key={answer}><button value={answer} onClick={this.clickAnswer.bind(this)} className="button is-primary">{decodeURI(answer)}</button></li>
             )
           })}
         </ul>
@@ -26,7 +26,7 @@ class QuestionCard extends Component {
     let { question } = this.props.data;
     return (
       <div className="box container">
-        <h4>{question}</h4>
+        <h4>{decodeURI(question)}</h4>
         <div>
           {this.getAnswers(this.props.data)}
         </div>
