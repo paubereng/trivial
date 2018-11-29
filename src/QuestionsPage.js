@@ -28,7 +28,7 @@ class QuestionsPage extends Component {
       let currentQuestion = this.props.options.question_counter;
       return (
         <div>
-            {this.props.options.questions && this.props.options.questions.length
+            {this.props.options.questions && this.props.options.questions.length > 0
               ?
               <TransitionGroup className="card-container">
                   <CSSTransition
