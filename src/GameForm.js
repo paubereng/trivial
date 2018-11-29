@@ -22,9 +22,11 @@ class GameForm extends Component {
     }
   };
   componentDidMount() {
+    this.props.resetGame();
     if(!this.props.categories || !this.props.categories.length > 0) {
       this.getCategories();
     }
+    // this.getCategories();
   }
   getCategories = () => {
     this.props.fetchCategories();
