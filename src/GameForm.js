@@ -16,10 +16,19 @@ class GameForm extends Component {
       game_set: {
         player_name: '',
         level: 'easy',
-        questions_number: 5
+        questions_number: 5,
+        category: ''
       }
     }
   };
+  componentDidMount() {
+    if(!this.props.categories || !this.props.categories.length > 0) {
+      this.getCategories();
+    }
+  }
+  getCategories = () => {
+    this.props.fetchCategories();
+  }
   renderSelectLevels = () => {
     let { levels } = this.state.options;
     return (
@@ -41,6 +50,20 @@ class GameForm extends Component {
         <div className="select is-info">
           <select name="questions_number" onChange={this.selectChange}>
             {questions_number.map(question => <option key={question} value={question}>{question}</option>)}
+          </select>
+        </div>
+      </div>
+    );
+  }
+  renderSelectCategories = () => {
+    let { categories } = this.props;
+
+    return (
+      <div className="field">
+        <label className="label">Categories</label>
+        <div className="select is-info">
+          <select name="category" onChange={this.selectChange}>
+            {categories.map(category => <option key={category.id} value={category.id}>{category.name}</option>)}
           </select>
         </div>
       </div>
@@ -102,6 +125,10 @@ class GameForm extends Component {
             </div>
             {this.renderSelectLevels()}
             {this.renderSelectQuestions()}
+            {this.renderSelectCategories()}
+            {/* {this.props.categories && this.props.categories.length > 0 &&
+              this.renderSelectCategories()
+            } */}
             {this.renderInputPlayer()}
 
             <Link to="/questions">
@@ -119,8 +146,12 @@ class GameForm extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return { categories: state.gameOptions.categories };
+}
+
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(actionsCreators, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(GameForm);
+export default connect(mapStateToProps, mapDispatchToProps)(GameForm);
