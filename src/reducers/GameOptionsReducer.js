@@ -66,18 +66,19 @@ function incrementQuestion() {
 }
 
 export function fetchQuestions() {
-  return dispatch => {
-      const url = 'https://opentdb.com/api.php?amount=10&encode=url3986';
-      axios.get(url)
-        .then(response => {
+  return (dispatch, getState) => {
+    const { level, questions_number } = getState().gameOptions.game_set;
+    const url = `https://opentdb.com/api.php?amount=${questions_number}&difficulty=${level}&type=multiple`;
+    axios.get(url)
+      .then(response => {
 
-          dispatch({
-            type: FETCH_QUESTIONS,
-            data: response.data.results
-          })
+        dispatch({
+          type: FETCH_QUESTIONS,
+          data: response.data.results
         })
-        .catch(error => {
-          throw(error);
-        })
+      })
+      .catch(error => {
+        throw(error);
+      })
   }
 }

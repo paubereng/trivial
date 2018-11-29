@@ -32,12 +32,15 @@ class QuestionsPage extends Component {
               ?
               <TransitionGroup className="card-container">
                   <CSSTransition
-                      key={currentQuestion}
-                      timeout={700}
-                      classNames="slide"
+                    key={currentQuestion}
+                    timeout={500}
+                    classNames="slide"
                   >
-                    <QuestionCard nextQuestion={this.nextQuestion} data={this.props.options.questions[currentQuestion]}/>
-                    </CSSTransition>
+                    <QuestionCard
+                      nextQuestion={this.nextQuestion}
+                      data={this.props.options.questions[currentQuestion]}
+                    />
+                  </CSSTransition>
                 </TransitionGroup>
               :
                 <div>
