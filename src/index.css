@@ -23,7 +23,9 @@ code {
   margin-top: 35px;
   max-width: 750px;
 }
-
+.countdown-container {
+  margin-bottom: 25px;
+}
 /* Loader */
 .lds-ripple {
   display: inline-block;

@@ -5,6 +5,7 @@ import * as actionsCreators from './reducers/GameOptionsReducer';
 import { CSSTransition, TransitionGroup} from 'react-transition-group';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import QuestionCard from './QuestionCard';
+import Countdown from './Components/Countdown';
 
 class QuestionsPage extends Component {
   constructor(props) {
@@ -27,7 +28,10 @@ class QuestionsPage extends Component {
     render() {
       let currentQuestion = this.props.options.question_counter;
       return (
-        <section className="section">
+        <section className="section container">
+          <div className="countdown-container">
+            <Countdown />
+          </div>
             {this.props.options.questions && this.props.options.questions.length > 0
               ?
               <TransitionGroup className="card-container">
