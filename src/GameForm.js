@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionsCreators from './reducers/GameOptionsReducer';
-import { Link } from 'react-router-dom';
+import cs from 'classnames';
 
 class GameForm extends Component {
   constructor(props) {
@@ -14,11 +14,12 @@ class GameForm extends Component {
         questions_number: [5,10,15]
       },
       game_set: {
-        player_name: '',
+        player_name: 'Player',
         level: 'easy',
         questions_number: 5,
         category: ''
-      }
+      },
+      errors: []
     }
   };
   componentDidMount() {
@@ -72,17 +73,22 @@ class GameForm extends Component {
   }
   renderInputPlayer = () => {
     let { player_name } = this.state.game_set;
+    let error = this.state.errors.includes('player_name');
+    let inputFieldClass = cs('input', {'is-danger': error});
     return (
       <div className="field">
         <label className="label">Name</label>
         <div className="control">
           <input
-            className="input"
+            className={inputFieldClass}
             type="text"
             placeholder="Player 1"
             value={player_name}
             onChange={this.inputPlayerChange}/>
-        </div>
+          </div>
+          {error &&
+            <p className="help is-danger">Type a name</p>
+          }
       </div>
     )
   }
@@ -113,15 +119,12 @@ class GameForm extends Component {
   clickStartButton = () => {
     this.props.postGameSet(this.state.game_set);
     this.props.fetchQuestions();
+    this.props.history.push('/questions');
   }
 
   render() {
     return (
       <section className="section">
-          <div class="container">
-          <div className="has-text-centered">
-            <h1 className="title is-1 has-text-light">TRIVIAL REACT</h1>
-          </div>
           <div className="container box game-form">
             <div className="has-text-centered">
               <h3 className="title is-3">Game options</h3>
@@ -130,21 +133,15 @@ class GameForm extends Component {
             {this.renderSelectLevels()}
             {this.renderSelectQuestions()}
             {this.renderSelectCategories()}
-            {/* {this.props.categories && this.props.categories.length > 0 &&
-              this.renderSelectCategories()
-            } */}
             {this.renderInputPlayer()}
 
-            <Link to="/questions">
-              <button
-                className="button is-medium is-fullwidth is-primary"
-                onClick={this.clickStartButton}
-              >
-              Start Game
-              </button>
-            </Link>
+            <button
+              className="button is-medium is-fullwidth is-primary"
+              onClick={this.clickStartButton}
+            >
+            Start Game
+            </button>
           </div>
-        </div>
       </section>
     );
   }

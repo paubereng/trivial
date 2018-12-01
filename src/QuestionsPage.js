@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionsCreators from './reducers/GameOptionsReducer';
 import { CSSTransition, TransitionGroup} from 'react-transition-group';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import QuestionCard from './QuestionCard';
 import Countdown from './Components/Countdown';
 
@@ -48,7 +47,7 @@ class QuestionsPage extends Component {
                 </TransitionGroup>
               :
                 <div className="has-text-centered">
-                  <div class="lds-ripple"><div></div><div></div></div>
+                  <div className="lds-ripple"><div></div><div></div></div>
                 </div>
             }
         </section>

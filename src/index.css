@@ -18,7 +18,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
+.App.container {
+  padding: 35px 0 0 0;
+}
 .game-form {
   margin-top: 35px;
   max-width: 750px;
@@ -109,13 +111,13 @@ code {
 /* slide exit */
 .slide-exit {
     opacity: 1;
-    transform: scale(1) translateX(0);
+    transform: translateX(0);
 
 }
 .slide-exit.slide-exit-active {
     opacity: 0;
     transform: translateX(-350px);
-    transition: opacity 250ms linear, transform 250ms ease-in;
+    transition: opacity 150ms linear, transform 150ms ease-out;
     /*transform: scale(0.97) translateY(5px);
     transition: opacity 1500ms linear, transform 1500ms ease-out;*/
 
@@ -125,6 +127,26 @@ code {
 }
 
 .card-container {
-  position: relative;
-  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+}
+
+.card-question {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  width: 500px;
+}
+
+.card-question ul {
+  margin-left: 0;
+}
+.card-question li {
+  list-style: none;
+}
+.card-question button {
+  width: 100%;
 }

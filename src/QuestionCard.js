@@ -25,7 +25,7 @@ class QuestionCard extends PureComponent  {
   renderQuestionCard = () => {
     let { question } = this.props.data;
     return (
-      <div className="box container">
+      <div className="box">
         <h4>{decodeURI(question)}</h4>
         <div>
           {this.getAnswers(this.props.data)}
@@ -40,8 +40,8 @@ class QuestionCard extends PureComponent  {
   render() {
 
     return(
-      <div className="column is-three-fifths is-offset-one-fifth">
-        <div className="columns is-mobile">
+      <div className="card-question">
+        <div>
         {this.renderQuestionCard()}
         </div>
       </div>
