@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { questionsUrl, categoryUrl } from '../constants';
 
 const FETCH_QUESTIONS = 'FETCH_QUESTIONS';
 const POST_GAME_SET = 'POST_GAME_SET';
@@ -86,8 +87,8 @@ export function resetGame() {
 
 export function fetchCategories() {
   return (dispatch, getState) => {
-    const url = `https://opentdb.com/api_category.php`;
-    axios.get(url)
+    const url = categoryUrl;
+    axios.get(url, {crossdomain: true})
       .then(response => {
         dispatch({
           type: FETCH_CATEGORIES,
@@ -103,7 +104,7 @@ export function fetchCategories() {
 export function fetchQuestions() {
   return (dispatch, getState) => {
     const { level, questions_number, category } = getState().gameOptions.game_set;
-    const url = `https://opentdb.com/api.php?amount=${questions_number}&category=${category}&difficulty=${level}&type=multiple`;
+    const url = `${questionsUrl}?amount=${questions_number}&category=${category}&difficulty=${level}&type=multiple`;
     axios.get(url)
       .then(response => {
         dispatch({

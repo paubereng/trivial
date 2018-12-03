@@ -3,21 +3,20 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionsCreators from './reducers/GameOptionsReducer';
 import cs from 'classnames';
+import { optionsGame } from './constants';
 
 class GameForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       options: {
-        players: [1,2,3,4],
-        levels: ['easy', 'medium', 'hard'],
-        questions_number: [5,10,15]
+        ...optionsGame
       },
       game_set: {
         player_name: 'Player',
         level: 'easy',
         questions_number: 5,
-        category: ''
+        category: 9
       },
       errors: []
     }
@@ -37,7 +36,7 @@ class GameForm extends Component {
       <div className="field">
         <label className="label">Levels</label>
         <div className="select is-info">
-          <select name="level" onChange={this.selectChange}>
+          <select name="level" onChange={this.selectChange} value={this.state.category}>
             {levels.map(level => <option key={level} value={level}>{level}</option>)}
           </select>
         </div>
