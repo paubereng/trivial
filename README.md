@@ -1,3 +1,7 @@
+#Trivial
+
+> The classic trivial game made with react. [Play a game](https://trivial-app.herokuapp.com "Play a game").
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
